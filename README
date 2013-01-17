@@ -1,0 +1,36 @@
+ccstreams - Custom C Streams
+
+CCStreams is a collection of custom C IO streams (FILE *). They can generally
+be used in the same way as any FILE stream pointer (fread, fwrite, fprintf,
+etc). Some specialization is done depending on the specific backing store for
+the stream. For example, the string stream has the unique ability of being
+truncatable by writing a NULL byte to it. The guiding principle is to provide
+streams (as if they were created from a file on disk) that behave in the least
+surprising way for a given backing store.
+
+Types of streams:
+
+* str - A C string (NULL-terminated character array).
+* mem - A dynamically allocated memory buffer.
+
+See test/example/*.c for example programs using these streams.
+
+Motivation
+
+Some of you may be wondering why fmemopen and open_memstream weren't
+sufficient. Initially I considered using open_memstream, but it doesn't permit
+reuse of an existing buffer. fmemopen does, but it won't dynamically allocate
+the buffer if it needs to grow. Basically, I needed something that was both
+fmemopen AND open_memstream (and some additional niceties like a truncatable
+string stream). Unfortunately no such stream existed and so ccstreams_fstropen
+was born.
+
+The memory buffer stream was just a logical extension of the symantics of the
+C string stream. It lacks the ability to be truncated, but it can contain any
+kind of data. Like the C string stream, it can reuse existing data in the
+buffer (which can't be done with open_memstream).
+
+IMO, these streams behave more like typical file streams than those provided
+by fmemopen and open_memstream. They adhere to the meaning of the mode
+parameter as per fopen(...). They grow in size as a file would. You can't seek
+past the end of the stream. Etcetera.

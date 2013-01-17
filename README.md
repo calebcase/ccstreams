@@ -1,4 +1,0 @@
-ccstreams
-=========
-
-Custom C Streams
