@@ -16,8 +16,6 @@
  * along with the CCStreams Library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define _GNU_SOURCE
-
 #include <assert.h>
 #include <errno.h>
 #include <stdlib.h>

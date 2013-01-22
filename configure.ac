@@ -1,10 +1,12 @@
 AC_INIT([ccstreams], [0.1], [calebcase@gmail.com])
 : ${CFLAGS="-g"}
+AC_USE_SYSTEM_EXTENSIONS
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
 LT_INIT
 AC_PROG_CC
+AC_PROG_CC_C99
 AM_PROG_CC_C_O
 PKG_CHECK_MODULES([CHECK], [check >= 0.9.4])
 AC_CHECK_FUNC(fopencookie,,AC_MSG_ERROR(fopencookie is required))
