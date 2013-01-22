@@ -182,6 +182,7 @@ ccstreams_fstropen(char **str, const char *mode)
   size_t mode_length = strlen(mode);
   int extra = 0;
   int create = 0;
+  int created = 0;
   int append = 0;
   int truncate = 0;
   int end = 0;
@@ -220,6 +221,7 @@ ccstreams_fstropen(char **str, const char *mode)
       goto cleanup;
     }
 
+    created = 1;
     *str[0] = '\0';
   }
 
@@ -229,12 +231,14 @@ ccstreams_fstropen(char **str, const char *mode)
     goto cleanup;
   }
 
-  if (truncate) {
+  if (truncate & !created) {
     *str = realloc(*str, 1);
     if (*str == NULL) {
       status = -1;
       goto cleanup;
     }
+
+    *str[0] = '\0';
   }
 
   cookie = malloc(sizeof(*cookie));
@@ -268,8 +272,9 @@ cleanup:
     str_cookie_fini(cookie);
     free(cookie);
 
-    if (create) {
+    if (created) {
       free(*str);
+      *str = NULL;
     }
   }
 

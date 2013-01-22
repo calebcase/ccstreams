@@ -189,6 +189,7 @@ ccstreams_fmemopen(char **ptr, size_t *size, const char *mode)
   size_t mode_length = strlen(mode);
   int extra = 0;
   int create = 0;
+  int created = 0;
   int append = 0;
   int truncate = 0;
   int end = 0;
@@ -227,6 +228,7 @@ ccstreams_fmemopen(char **ptr, size_t *size, const char *mode)
       goto cleanup;
     }
 
+    created = 1;
     *size = 0;
   }
 
@@ -236,8 +238,9 @@ ccstreams_fmemopen(char **ptr, size_t *size, const char *mode)
     goto cleanup;
   }
 
-  if (truncate) {
-    *ptr = realloc(*ptr, 0);
+  if (truncate & !created) {
+    free(*ptr);
+    *ptr = malloc(0);
     if (*ptr == NULL) {
       status = -1;
       goto cleanup;
@@ -275,8 +278,9 @@ cleanup:
     mem_cookie_fini(cookie);
     free(cookie);
 
-    if (create) {
+    if (created) {
       free(*ptr);
+      *ptr = NULL;
     }
   }
 
