@@ -27,7 +27,7 @@
 FILE *
 ecx_ccstreams_fmemopen(char **ptr, size_t *size, const char *mode)
 {
-  FILE *stream = ccstream_fmemopen(ptr, size, mode);
+  FILE *stream = ccstreams_fmemopen(ptr, size, mode);
   if (stream == NULL) {
     ec_throw_errno(errno, NULL) NULL;
   }
