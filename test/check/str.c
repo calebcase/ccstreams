@@ -145,21 +145,12 @@ str_suite(void)
   TCase *tc_str_rw = tcase_create("str rw");
 
   tcase_add_checked_fixture(tc_str_rw, str_rw_setup, str_rw_teardown);
+
   tcase_add_test(tc_str_rw, str_rw_read);
-
-  tcase_add_checked_fixture(tc_str_rw, str_rw_setup, str_rw_teardown);
   tcase_add_test(tc_str_rw, str_rw_write);
-
-  tcase_add_checked_fixture(tc_str_rw, str_rw_setup, str_rw_teardown);
   tcase_add_test(tc_str_rw, str_rw_tell);
-
-  tcase_add_checked_fixture(tc_str_rw, str_rw_setup, str_rw_teardown);
   tcase_add_test(tc_str_rw, str_rw_seek);
-
-  tcase_add_checked_fixture(tc_str_rw, str_rw_setup, str_rw_teardown);
   tcase_add_test(tc_str_rw, str_rw_write_growing);
-
-  tcase_add_checked_fixture(tc_str_rw, str_rw_setup, str_rw_teardown);
   tcase_add_test(tc_str_rw, str_rw_write_shrinking);
 
   suite_add_tcase(suite, tc_str_rw);

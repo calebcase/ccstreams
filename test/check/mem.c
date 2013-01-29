@@ -136,18 +136,11 @@ mem_suite(void)
   TCase *tc_mem_rw = tcase_create("mem rw");
 
   tcase_add_checked_fixture(tc_mem_rw, mem_rw_setup, mem_rw_teardown);
+
   tcase_add_test(tc_mem_rw, mem_rw_read);
-
-  tcase_add_checked_fixture(tc_mem_rw, mem_rw_setup, mem_rw_teardown);
   tcase_add_test(tc_mem_rw, mem_rw_write);
-
-  tcase_add_checked_fixture(tc_mem_rw, mem_rw_setup, mem_rw_teardown);
   tcase_add_test(tc_mem_rw, mem_rw_tell);
-
-  tcase_add_checked_fixture(tc_mem_rw, mem_rw_setup, mem_rw_teardown);
   tcase_add_test(tc_mem_rw, mem_rw_seek);
-
-  tcase_add_checked_fixture(tc_mem_rw, mem_rw_setup, mem_rw_teardown);
   tcase_add_test(tc_mem_rw, mem_rw_write_growing);
 
   suite_add_tcase(suite, tc_mem_rw);
