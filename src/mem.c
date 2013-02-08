@@ -243,6 +243,8 @@ ccstreams_fmemopen(char **ptr, size_t *size, const char *mode)
       status = -1;
       goto cleanup;
     }
+
+    *size = 0;
   }
 
   cookie = malloc(sizeof(*cookie));
