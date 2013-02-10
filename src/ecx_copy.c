@@ -16,11 +16,25 @@
  * along with the CCStreams Library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ECX_CCSTREAMS_H
-#define ECX_CCSTREAMS_H 1
+#include <assert.h>
+#include <ec/ec.h>
+#include <errno.h>
+#include <stdlib.h>
+#include <string.h>
 
-#include <ccstreams/ecx_copy.h>
-#include <ccstreams/ecx_mem.h>
-#include <ccstreams/ecx_str.h>
+#include <ccstreams/copy.h>
 
-#endif /* ECX_CCSTREAMS_H */
+void
+ecx_ccstreams_copy_by(FILE *from, FILE *to, size_t *bytes, size_t chunk)
+{
+  int status = ccstreams_copy_by(from, to, bytes, chunk);
+  if (status != 0) {
+    ec_throw_errno(errno, NULL) NULL;
+  }
+}
+
+void
+ecx_ccstreams_copy(FILE *from, FILE *to, size_t *bytes)
+{
+  ecx_ccstreams_copy_by(from, to, bytes, 4096);
+}

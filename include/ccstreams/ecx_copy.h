@@ -16,11 +16,25 @@
  * along with the CCStreams Library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ECX_CCSTREAMS_H
-#define ECX_CCSTREAMS_H 1
+#ifndef ECX_CCSTREAMS_COPY_H
+#define ECX_CCSTREAMS_COPY_H 1
 
 #include <ccstreams/ecx_copy.h>
-#include <ccstreams/ecx_mem.h>
-#include <ccstreams/ecx_str.h>
 
-#endif /* ECX_CCSTREAMS_H */
+/* Copy data from the input stream to the output stream. 
+ *
+ * bytes will be set to the total number of bytes written.
+ */ 
+void
+ecx_ccstreams_copy(FILE *from, FILE *to, size_t *bytes);
+
+/* Copy data from the input stream to the output stream in chunks of the given
+ * size.
+ *
+ * bytes will be set to the total number of bytes written.
+ */
+void
+ecx_ccstreams_copy_by(FILE *from, FILE *to, size_t *bytes, size_t chunk);
+
+
+#endif /* ECX_CCSTREAMS_COPY_H */

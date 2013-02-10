@@ -19,6 +19,7 @@
 #ifndef CCSTREAMS_H
 #define CCSTREAMS_H 1
 
+#include <ccstreams/copy.h>
 #include <ccstreams/mem.h>
 #include <ccstreams/str.h>
 
