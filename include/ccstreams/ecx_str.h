@@ -19,7 +19,7 @@
 #ifndef ECX_CCSTREAMS_STR_H
 #define ECX_CCSTREAMS_STR_H 1
 
-#include <ccstreams/ecx_str.h>
+#include <ccstreams/str.h>
 
 FILE *
 ecx_ccstreams_fstropen(char **str, const char *mode);

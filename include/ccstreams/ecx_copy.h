@@ -19,7 +19,7 @@
 #ifndef ECX_CCSTREAMS_COPY_H
 #define ECX_CCSTREAMS_COPY_H 1
 
-#include <ccstreams/ecx_copy.h>
+#include <ccstreams/copy.h>
 
 /* Copy data from the input stream to the output stream. 
  *
